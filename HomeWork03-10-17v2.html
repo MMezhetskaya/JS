@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<script>
+
+
+    function factorial(n){
+        if (n<=0){
+            alert ('Введите положительное число для вычисления факториала!')
+            return null;
+        }
+        var result = 1;
+        while(n){
+            result *= n--;
+        }
+        return result;
+    }
+    /*console.log (factorial(5));*/
+
+    function factorial_2(n){
+        if (n<=0){
+            alert ('Введите положительное число для вычисления факториала!')
+            return null;
+        }
+        if(n==1)
+            return n;
+        else
+            return n*factorial_2(n-1);
+    }
+    /*console.log (factorial_2(5));*/
+
+    function fib (n)
+    /*function fib (n)  returns the n-th number of the Fibonacci sequence using a recursive formula*/
+    {
+        if (n==0) return 0;
+        if (n==1) return 1;
+        if (n>=2) return (fib(n-1)+fib(n-2));
+        else return (fib(n+2)-fib(n+1));
+
+    }
+
+    console.log (fib(16));
+
+    function fibCycle(n)
+    /*function fib (n)  returns the n-th number of the Fibonacci sequence using a cycle*/
+    {
+        if (n==0) return 0;
+        if (n==1) return 1;
+        var f0=0,f1=1,b=0;
+        if (n>=2) {
+            for (i = 2; i <= n; i++) {
+                b = f0;
+                f0 = f1;
+                f1 = b + f0;
+                /*document.write(i + '-e:' + f1 + '<br>');*/
+            }
+            return f1;
+       }
+        if (n<=-1){
+
+            for(i=-1;i>=n;i--)
+            {
+               b=f1;
+               f1=f0;
+               f0=b-f1;
+               /*document.write(i + '-e:' + f0 + '<br>');*/
+            }
+            return f0;
+        }
+
+    }
+    console.log(fibCycle(100));
+    console.log(fibCycle(-100));
+
+    function multiple_on_5(){
+      for (i=1; i<=10; i++){
+          console.log ("5*"+i+"= "+5*i);
+          //document.write ("5*"+i+"= "+5*i+"<br>");
+      }
+    }
+
+  /*  multiple_on_5();*/
+</script>
+
+</body>
+
+</html>
