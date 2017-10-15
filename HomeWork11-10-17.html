@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<script>
+
+    function userInputInteger(){
+        /*функция запрашивает у пользователя число элементов массива и возвращает целое число, введенное пользователем*/
+        answer = prompt('Enter  the number of elements of array', '100');
+        return parseInt(answer, 10);
+    }
+
+    /*1) Создать массив, длина которого строится от числа, которое введет пользователь
+    (предложить пользователю ввести число). Заполнить массив числами (порядковый номер элемента массива)*/
+    function init1(){
+        var n = userInputInteger();
+        var arr=[];
+        for (i=1; i<=n; i++)
+        {
+            arr[i]=i;
+            document.write('arr['+i+']: ' + arr[i] + '<br>');
+        }
+        return arr;
+
+    }
+
+    /*2) Создать массив, длина которого строится от числа, которое введет пользователь
+    (предложить пользователю ввести число). Заполнить массив числами (порядковый номер элемента массива в квадрате)*/
+    function init2(){
+        var n = userInputInteger();
+        var arr=[];
+        for (i=1; i<=n; i++)
+        {
+            arr[i]=i*i;
+            document.write('arr['+i+']: ' + arr[i] + '<br>');
+        }
+        return arr;
+    }
+
+    
+
+    /*3) Создать массив, длина которого строится от числа, которое введет пользователь (предложить пользователю ввести
+    число). Заполнить массив числами, где на четных местах в котором стоят единицы, а на нечетных местах - числа,
+    равные остатку от деления своего номера на 5*/
+    function init3(){
+        var n = userInputInteger();
+        var arr=[];
+        for (i=1; i<=n; i++)
+        {
+            if(i%2==0) arr[i]=1;
+            else arr[i]=i%5;
+            document.write('arr['+i+']: ' + arr[i] + '<br>');
+        }
+    }
+
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    /*4) Создать массив из случайных целых чисел от 0 до n, где n вводит пользователь.*/
+    function init4(){
+        var n = userInputInteger();
+        var arr=[];
+        for (i=0; i<=n; i++)
+        {
+            arr[i]=getRandomInt(0,n);
+            document.write('arr['+i+']: ' + arr[i] + '<br>');
+        }
+    }
+    /*5) Определить, содержит ли массив данное число x*/
+    function isHere(arr,x){
+        var n=arr.length;
+        for (var i = 1; i < n; i++) {
+            if (arr[i]===x) return true;
+        }
+
+        return  false;
+    }
+
+    /*6) Найти количество четных чисел в массиве.*/
+    function counterEvennumbers(arr) {
+        var n=arr.length;
+        var counter=0;
+        for (var i = 1; i < n; i++) {
+            if ((arr[i]%2)==0) counter++;
+        }
+        return  counter;
+    }
+    
+    /*7) Найдите сумму четных чисел массива*/
+    function sumEvennumbers(arr) {
+        var n=arr.length;
+        var sum=0;
+        for (var i = 1; i < n; i++) {
+            if ((arr[i]%2)==0) sum=sum+arr[i];
+        }
+        return sum;
+    }
+
+    /*8) Найдите сумму чисел массива, которые стоят на четных индексах.*/
+    function sumEvenitems(arr) {
+        var n=arr.length;
+        var sum=0;
+        for (var i = 1; i < n; i++) {
+            if ((i%2)==0) sum=sum+arr[i];
+        }
+        return sum;
+    }
+
+    /*9) Найдите наибольший элемент массива*/
+    function findMaxarray(arr){
+        var n=arr.length;
+        var max=-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+        for (var i = 1; i < n; i++) {
+            if (arr[i]>max) max=arr[i];
+        }
+        return max;
+    }
+
+    function printArray(arr){
+        var n=arr.length;
+        if (n==0) {
+            document.write('This is empty array'+'<br>');
+            return -1;
+        }
+        for (var i = 0; i < n; i++) {
+            document.write('arr['+i+']: ' + arr[i] + '<br>');
+        }
+        document.write('<br>');
+    }
+
+    /*10) Определите, есть ли в массиве повторяющиеся элементы и отобразить их*/
+    function findDuplicateitems(arr){
+        var n=arr.length;
+        var arr=arr.sort();
+        var arrDuplicate=[];
+
+        for (var i=0;i<n; i++){
+            if (arr[i]==arr[i+1]&&arr[i]!=arr[i+2]){
+                arrDuplicate.push(arr[i]);
+            }
+        }
+
+        if (arrDuplicate.length==0){
+            document.write('There are no duplicate elements in array.' +'<br>')
+        }
+
+        return arrDuplicate;
+    }
+/*11) Удалить в массиве все числа, которые повторяются более двух раз.
+* Причем удаляется первый из более чем дважды встречаемых элементов*/
+function deleteDublies(arr){
+    var count=0;
+    var n=arr.length;
+    var arrNew=[];
+    for (var i=0; i<n; i++){
+        count=0;
+        for (var j=0; j<n; j++){
+
+           if (arr[i]==arr[j]) {
+               count++;
+           }
+        }/*for j*/
+        if (count>2) {
+            delete arr[i];
+        }
+    }/*for i*/
+
+    /*формируем новый массив без пустот*/
+    for (var i=0; i<n; i++){
+        if (arr[i]!=undefined){
+            arrNew.push(arr[i]);
+        }
+    }
+
+    return arrNew;
+}
+
+
+
+/*Функция создает массив заданной размерности strxstol и заполняет его произвольными элементами 0,n*/
+    function initMultiArray(str,stol,n){
+        var arr=[];
+
+        for (var i=0; i<str; i++)
+        {
+            arr[i]=[];
+            for (var j=0; j<stol; j++)
+            {
+
+                arr[i][j] = getRandomInt(0,n);
+                document.write('arr['+i+']['+j+']: '+arr[i][j] + '<br>');
+    }
+            document.write('<br>');
+        }
+        return arr;
+    }
+
+    /*12) Создать многомерный массив 5х5 и заполнить случайными целыми числами.
+    По результату матрицы, нужно взять числа по диагонали и вывести в одномерный массив.*/
+   function getDiagonal(arr) {
+       var Diagonal=[];
+       for (var i=0;i<5;i++){
+           Diagonal[i]=arr[i][i];
+          /* document.write('elem['+i+']: '+Diagonal[i]+'<br>');*/
+       }
+       return Diagonal;
+   }
+
+   /*13) Создать массив 5х5 и подсчитать сумму двух диагоналей*/
+   function sumDiagonals(arr){
+       var sum=0;
+       /*вычисляем сумму главной диагонали-след матрицы*/
+       for (var i=0;i<5;i++){
+           sum=sum+arr[i][i];
+       }
+       /*добавляем элементы побочной диагонали*/
+       for (i=0; i<5;i++){
+           sum=sum+arr[i][4-i];/* в общем случае с n [i] [n-i-1]*/
+       }
+       /*document.write('Сумма элементов двух диагоналей '+sum+'<br>');*/
+       return sum;
+   }
+
+
+
+
+    /*init1();*/
+    /*init2();*/
+    /*init3();*/
+    /*init4();*/
+    /*var arr=init1();*/
+    /*document.write(isHere(arr,8));*/
+    /*document.write(counterEvennumbers(arr)+'<br>');*/
+    /*document.write('The sum of even numbers in array is: '+sumEvennumbers(arr)+'<br>');*/
+   /* document.write('The sum of even items in array is: '+sumEvenitems(arr)+'<br>');*/
+    /*document.write('The max element  in array is: '+findMaxarray(arr)+'<br>');*/
+    /*var arr=[1,-10,2,-99,1,6,9,-10,96,2,96,-10];*/
+   /* var arr=[1,-10,2,-99,1,6,9,96,2,96,-10,1,1,4];*/
+   /*var arr=[1,1,100,3,1,3,100,2,22,2,3,4,5,6,3,3,3,3];*/
+   var arr=[1,2,3,1,56,3,1,3,56,56,3,56,4,56];
+   document.write('Начальный массив'+'<br>');
+    printArray(arr);
+    document.write('Результат'+'<br>');
+    /*printArray(findDuplicateitems(arr));*/
+    /*printArray(getDiagonal(initMultiArray(5,5,100)));*/
+   /* document.write('The sum of the elements of both diagonals '+ sumDiagonals(initMultiArray(5,5,100))+'<br>');*/
+    printArray(deleteDublies(arr));
+
+
+
+
+</script>
+
+</body>
+
+</html>
